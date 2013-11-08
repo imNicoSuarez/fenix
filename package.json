@@ -1,0 +1,21 @@
+{
+  "name": "fenix",
+  "description": "Api Framework",
+  "version": "0.0.0",
+  "author": "Nicolas Suarez <nicolassuarez.cabrera@gmail.com>",
+  "maintainers": [
+    "Nicolas Suarez <nicolassuarez.cabrera@gmail.com>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mNicoSuarez/fenix.git"
+  },
+  "keywords": [
+    "api",
+    "framework"
+  ],
+  "main": "./lib/param_replacer",
+  "engines": {
+    "node": ">= 0.6"
+  }
+}
