@@ -1,5 +1,5 @@
 {
-  "name": "fenix",
+  "name": "Fenixjs",
   "description": "Api Framework",
   "version": "0.0.0",
   "author": "Nicolas Suarez <nicolassuarez.cabrera@gmail.com>",
@@ -12,10 +12,34 @@
   },
   "keywords": [
     "api",
-    "framework"
+    "framework",
+    "express"
   ],
-  "main": "./lib/param_replacer",
+  "main": "./apicore.js",
+  "bin": {
+    "fenix": "./bin/"
+  },
   "engines": {
     "node": ">= 0.6"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/mNicoSuarez/fenix/issues"
+  },
+  "dependencies": {
+    "express": "3.1.x",
+    "mysql-activerecord": "0.8.2",
+    "mongodb": "1.3.23",
+    "path": "0.4.9",
+    "configure":"~0.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://vorb.de/license/mit.html"
+    }
+  ]
 }
