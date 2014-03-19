@@ -1,4 +1,4 @@
-var fenix = require('../apicore');
+var fenix = require('../fenix/apicore');
 
   server = fenix.server;
   app = server.express();
