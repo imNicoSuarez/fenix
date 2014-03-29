@@ -1,14 +1,18 @@
-var server = require('./bin/server');
+"use strict"
 
-
+var server   = require('./base/server');
+var database = require('./base/database');
+var routes   = require('./base/routes');
+var socket   = require('./base/socket');
+var util     = require('./base/utilities');
 
 var fenix = {
   server: server(),
-  db: 'Not Implement',
+  db: database(),
   auth: 'Not Implement',
-  routes: "Not Implement",
-  util: "Not Implement",
-  socket: "Not Implement"
+  routes: routes(),
+  util: util,
+  socket: socket
 }
 
 module.exports = fenix
