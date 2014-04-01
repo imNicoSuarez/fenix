@@ -49,7 +49,8 @@ function md5(text){
 
 // TODO: Documentar
 function apiPath(path){
-  var rootPath = config.api.default_path;
+  path = path.replace(/^\//,'');
+  var rootPath = config.api.root;
   var version =  config.api.version;
   var path = rootPath + version + '/' + path;
   return  path;

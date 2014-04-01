@@ -1,6 +1,33 @@
 {
   "server": {
+    "port": 4000,
+    "host": "localhost"
+  },
 
+  "database": {
+    "server": "localhost",
+    "username": "<username>",
+    "password": "<password>",
+    "name": "zlide_app"
+  },
+
+  "mongodb": {
+    "host": "localhost",
+    "port": 27017,
+    "database": "zlide_service"
+  },
+
+  "routes": {
+    "file" : "routes.yml"
+  },
+
+  "api": {
+    "root": "/api",
+    "version": "0.1"
+  },
+
+  "google": {
+    "client_id": "859899350109-0fnmks5mik7ipd289n2o249vkvl9eu34.apps.googleusercontent.com",
+    "redirect_url": "http://localhost:4000/"
   }
-
 }

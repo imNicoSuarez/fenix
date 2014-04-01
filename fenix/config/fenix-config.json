@@ -1,0 +1,9 @@
+{
+  "auth" : {
+    "JWT":{
+      "google": {
+        "url" : "https://www.googleapis.com/oauth2/v1/certs"
+      }
+    }
+  }
+}

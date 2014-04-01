@@ -54,7 +54,9 @@ module.exports = function(){
 
 //  Config env functions
 function developmentConfig(app, env, callback){
+
   app.configure('development', function(){
+    var $self = this;
     app.use(express.logger());
     app.use(express.bodyParser());
     app.use(express.methodOverride());
@@ -62,12 +64,13 @@ function developmentConfig(app, env, callback){
     app.use(allowCrossDomain);
     app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
     app.use(express.logger(':method :url - :referrer'));
-    if ( callback != undefined && typeof callback === 'function') { callback(app);}
+    if ( callback != undefined && typeof callback === 'function') { callback($self, app, express);}
   });
 };
 
 function productionConfig(app, env, callback){
   app.configure('production', function(){
+    var $self = this;
     app.use(express.logger());
     app.use(express.bodyParser());
     app.use(express.methodOverride());
@@ -75,12 +78,13 @@ function productionConfig(app, env, callback){
     app.use(allowCrossDomain);
     app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
     app.use(express.logger(':method :url - :referrer'));
-    if ( callback != undefined && typeof callback === 'function') { callback(app);}
+    if ( callback != undefined && typeof callback === 'function') { callback($self, app, express);}
   });
 };
 
 function testConfig(app, env, callback){
   app.configure('test', function(){
+    var $self = this;
     app.use(express.logger());
     app.use(express.bodyParser());
     app.use(express.methodOverride());
@@ -88,7 +92,7 @@ function testConfig(app, env, callback){
     app.use(allowCrossDomain);
     app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
     app.use(express.logger(':method :url - :referrer'));
-    if ( callback != undefined && typeof callback === 'function') { callback(app);}
+    if ( callback != undefined && typeof callback === 'function') { callback($self, app, express);}
   });
 };
 
