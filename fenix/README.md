@@ -16,10 +16,10 @@ server.js
   var fenix = require('fenix');
 
   var server = fenix.server,
-      app    = server.express();
+      app    = server.express(),
+      routes = fenix.routes;
 
-
-  app.get('/api/users', function(req, res){
+  app.get(routes.users, function(req, res){
     res.json([
       { name: 'John',  last_name: 'Smith'},
       { name: 'Tito',  last_name: 'Perez'}
@@ -57,11 +57,16 @@ Create config.json.
       "file" : "routes.yml"
     },
 
-    "api": {
-      "root": "/api",
-      "version": "0.1"
-    },
   }
+~~~
+
+
+## Routes
+
+routes.yml
+~~~yaml
+  users: '/api/user'
+
 ~~~
 
 Add settings in package.json
