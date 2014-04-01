@@ -1,7 +1,7 @@
 {
   "name": "fenix",
   "description": "Api Framework",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "author": {
     "name":"Nicolas Suarez",
     "email": "nicolas.suarez@3coode.com",
@@ -13,7 +13,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mNicoSuarez/fenix.git"
+    "url": "https://github.com/imNicoSuarez/fenix.git"
   },
   "keywords": [
     "api",
@@ -28,7 +28,7 @@
     "npm": "1.2.x"
   },
   "bugs": {
-    "url": "https://github.com/mNicoSuarez/fenix/issues"
+    "url": "https://github.com/imNicoSuarez/fenix/issues"
   },
   "dependencies": {
     "express": "3.1.x",
