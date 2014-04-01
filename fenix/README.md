@@ -60,15 +60,6 @@ Create config.json.
   }
 ~~~
 
-
-## Routes
-
-routes.yml
-~~~yaml
-  users: '/api/user'
-
-~~~
-
 Add settings in package.json
 
 packege.json
@@ -80,6 +71,13 @@ packege.json
   }
 ~~~
 
+## Routes
+
+routes.yml
+~~~yaml
+  users: '/api/user'
+
+~~~
 
 ## License
 
