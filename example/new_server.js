@@ -1,39 +1,16 @@
-var server = require('../fenix/bin/server-new');
+var Server = require('../fenix/bin/server-new');
 
-var querystring = require("querystring");
+var server = new Server();
 
+var routes = server.routes();
 
-var handle = {
-                '/api': api,
-                '/site': site
-             }
+routes.api.get(function(req, res){
+  res.writeHead(200, {"Content-Type": "application/json"});
 
+  res.writeHead(200,{'Content-Type':'application/json'});
+  res.end(JSON.stringify([{name: 'Nicolas', last_name: 'Suarez'},
+                          {name: 'Juansito', last_name: 'Rodrigez'}]));
+});
 
-server.start(handle);
+server.start();
 
-//  handler
-function api(response, dataPosteada) {
-  console.log("Manipulador de api");
-  var body = '<html>'+
-  '<head>'+
-  '<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />'+
-  '</head>'+
-  '<body>'+
-  '<form action="/site" method="post">'+
-  '<textarea name="text" rows="20" cols="60"></textarea>'+
-  '<input type="submit" value="Submit text" />'+
-  '</form>'+
-  '</body>'+
-  '</html>';
-
-  response.writeHead(200, {"Content-Type": "text/html"});
-  response.write(body);
-  response.end();
-}
-
-function site(response, dataPosteada) {
-  console.log("Manipulador de sitio");
-  response.writeHead(200, {"Content-Type": "text/html"});
-  response.write("Tu enviaste el texto: : " + querystring.parse(dataPosteada)["text"]);
-  response.end();
-}
