@@ -1,11 +1,12 @@
 var fenix = require('../fenix/fenix');
 var browserify = require('browserify-middleware');
 
-  server = fenix.server;
-  app    = server.express();
-  routes = fenix.routes;
-  util   = fenix.util
-  auth   = fenix.auth;
+  server   = fenix.server;
+  resource = server.resource;
+  app      = server.app
+  routes   = fenix.routes;
+  util     = fenix.util
+  auth     = fenix.auth;
 
   server.config(undefined, function($self, app, express){
     app.use(express.static(__dirname + '/public'));
@@ -15,11 +16,19 @@ var browserify = require('browserify-middleware');
 
   app.get('/main.js', browserify('./client/index.js'));
 
-  app.get('/api/messages', function (req, res) {
+  resource.root.get(function (req, res) {
     res.json([
       { subject: 'Your invoice',  sender: 'Robert'},
       { subject: 'hello foobar',  sender: 'Bob'}
     ]);
   });
+
+  resource.coso.get(function (req, res) {
+    res.json([
+      { subject: 'Your invoice',  sender: 'Robert'},
+      { subject: 'hello foobar',  sender: 'Bob'}
+    ]);
+  });
+
 
   server.listen();

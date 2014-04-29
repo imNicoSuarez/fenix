@@ -16,10 +16,9 @@ server.js
   var fenix = require('fenix');
 
   var server = fenix.server,
-      app    = server.express(),
-      routes = fenix.routes;
+      resource = server.resource,
 
-  app.get(routes.users, function(req, res){
+  resource.users.get(function(req, res){
     res.json([
       { name: 'John',  last_name: 'Smith'},
       { name: 'Tito',  last_name: 'Perez'}
@@ -66,7 +65,9 @@ packege.json
 ~~~json
   {
     ...
-    "main": "node server.js --config config.json"
+    "scripts": {
+      "start": "node server.js --config config.json"
+    },
     ...
   }
 ~~~

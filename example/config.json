@@ -27,7 +27,7 @@
   },
 
   "google": {
-    "client_id": "859899350109-0fnmks5mik7ipd289n2o249vkvl9eu34.apps.googleusercontent.com",
+    "client_id": "795343245353-tjkggvshqesge5f3m71a0ortv9hlv7o8.apps.googleusercontent.com",
     "redirect_url": "http://localhost:4000/"
   }
 }

@@ -1,1 +1,3 @@
 root: '/api/messages'
+coso: '/coso'
+test_pepe: '/test/pepe'

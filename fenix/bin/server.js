@@ -1,19 +1,18 @@
 "use strict"
 
-var express = require('express'),
-    http = require('http'),
-    configure = require('configure');
+var express   = require('express'),
+    http      = require('http'),
+    configure = require('configure'),
+    routesList    = require('./routes');
 
 
 module.exports = function(){
   var app, serverCore;
-  app = express();
+  app = setRoutes(express());
 
   serverCore = {
-    express: function(){
-      return app;
-    },
-
+    resource: app.handlerRoutes,
+    app: app,
     _create: function(){
       return http.createServer(app);
     },
@@ -111,3 +110,56 @@ function allowCrossDomain(req, res, next) {
       next();
     }
 };
+
+function setRoutes(app){
+  var routes = routesList();
+  var routesKey = objectKey(routes);
+  console.log(routes);
+  var object = {};
+
+  for (var i = 0; i < routesKey.length; i++) {
+    object[routesKey[i]] = routeTemplate(routesKey[i]);
+  };
+
+  app.handlerRoutes = object;
+
+  return app;
+}
+
+
+function objectKey(obj){
+  var keys = [];
+
+  for (var name in obj) {
+    keys.push(name);
+  }
+
+  return keys;
+}
+
+function routeTemplate(key){
+  return {
+    get: function(callback){
+      app.get(routes[key], function(req, res){
+        callback(req, res);
+      });
+    },
+    post: function(callback){
+      app.post(routes[key], function(req, res){
+        callback(req, res);
+      });
+    },
+    put: function(callback){
+      app.put(routes[key], function(req, res){
+        callback(req, res);
+      });
+    },
+    delete: function(callback){
+      app.delete(routes[key], function(req, res){
+        callback(req, res);
+      });
+    }
+  }
+}
+
+
