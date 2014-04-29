@@ -118,7 +118,7 @@ function setRoutes(app){
   var object = {};
 
   for (var i = 0; i < routesKey.length; i++) {
-    object[routesKey[i]] = routeTemplate(routesKey[i]);
+    object[routesKey[i]] = routeTemplate(routesKey[i], app);
   };
 
   app.handlerRoutes = object;
@@ -137,7 +137,7 @@ function objectKey(obj){
   return keys;
 }
 
-function routeTemplate(key){
+function routeTemplate(key, app){
   return {
     get: function(callback){
       app.get(routes[key], function(req, res){
