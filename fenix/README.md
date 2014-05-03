@@ -59,7 +59,7 @@ Create config.json.
     },
 
     "routes": {
-      "file" : "routes.yml"
+      "file" : "routes.yml",
       "scopes": {
         "api" : "/api"
       }
