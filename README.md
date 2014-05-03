@@ -87,7 +87,7 @@ routes.yml
 ~~~yaml
   root: '/'
   api:
-    users '/users'
+    users: '/users'
 ~~~
 
 ## License
