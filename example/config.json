@@ -4,21 +4,11 @@
     "host": "localhost"
   },
 
-  "database": {
-    "server": "localhost",
-    "username": "<username>",
-    "password": "<password>",
-    "name": "zlide_app"
-  },
-
-  "mongodb": {
-    "host": "localhost",
-    "port": 27017,
-    "database": "zlide_service"
-  },
-
   "routes": {
-    "file" : "routes.yml"
+    "file" : "routes.yml",
+    "scopes" : {
+      "api" : "/api"
+    }
   },
 
   "api": {

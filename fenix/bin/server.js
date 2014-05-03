@@ -114,11 +114,24 @@ function allowCrossDomain(req, res, next) {
 function setRoutes(app){
   var routes = routesList();
   var routesKey = objectKey(routes);
-  console.log(routes);
   var object = {};
 
   for (var i = 0; i < routesKey.length; i++) {
-    object[routesKey[i]] = routeTemplate(routesKey[i], app, routes);
+    if (isObject(routes[routesKey[i]])){
+
+      var subRoutes = routes[routesKey[i]];
+      var subRoutesKey = objectKey(subRoutes);
+      var scope =  configure.routes.scopes[routesKey[i]];
+      object[routesKey[i]] = {};
+
+      for (var j = 0; j < subRoutesKey.length; j++) {
+        var strRoute = scope + subRoutes[subRoutesKey[j]];
+        object[routesKey[i]][subRoutesKey[j]] = routeTemplate(app, strRoute);
+      }
+
+    } else {
+      object[routesKey[i]] = routeTemplate(app, routes[routesKey[i]]);
+    }
   };
 
   app.handlerRoutes = object;
@@ -137,29 +150,31 @@ function objectKey(obj){
   return keys;
 }
 
-function routeTemplate(key, app, routes){
+function routeTemplate(app, route){
   return {
-    get: function(callback){
-      app.get(routes[key], function(req, res){
+    get: function(callbackValid, callback){
+      app.get(route, callbackValid, function(req, res){
         callback(req, res);
       });
     },
-    post: function(callback){
-      app.post(routes[key], function(req, res){
+    post: function(callbackValid, callback){
+      app.post(route, callbackValid, function(req, res){
         callback(req, res);
       });
     },
-    put: function(callback){
-      app.put(routes[key], function(req, res){
+    put: function(callbackValid, callback){
+      app.put(route, callbackValid, function(req, res){
         callback(req, res);
       });
     },
-    delete: function(callback){
-      app.delete(routes[key], function(req, res){
+    delete: function(callbackValid, callback){
+      app.delete(route, callbackValid, function(req, res){
         callback(req, res);
       });
     }
   }
 }
 
-
+function isObject(input){
+  return (typeof input === 'object' ) && (input instanceof Object);
+}
