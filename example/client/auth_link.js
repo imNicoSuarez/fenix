@@ -5,9 +5,9 @@ module.exports =   url.format({
   host:     'accounts.google.com',
   pathname: '/o/oauth2/auth',
   query: {
-    client_id:     "859899350109-0fnmks5mik7ipd289n2o249vkvl9eu34.apps.googleusercontent.com",
+    client_id:     "795343245353-tjkggvshqesge5f3m71a0ortv9hlv7o8.apps.googleusercontent.com",
     redirect_uri:  "http://localhost:4000/",
     response_type: 'id_token',
-    scope:         'openid email'
+    scope:         'openid email profile'
   }
 });

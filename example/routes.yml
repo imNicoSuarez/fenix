@@ -1,1 +1,7 @@
-root: '/api/messages'
+root: '/'
+coso: '/coso'
+test_pepe: '/test/pepe'
+api:
+  users: '/users'
+  user:  '/users/:id'
+  messages: '/messages'

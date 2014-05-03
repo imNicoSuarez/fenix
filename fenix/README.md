@@ -16,14 +16,19 @@ server.js
   var fenix = require('fenix');
 
   var server = fenix.server,
-      app    = server.express(),
-      routes = fenix.routes;
+      resource = server.resource,
 
-  app.get(routes.users, function(req, res){
+  // GET /api/users
+  resource.api.users.get(function(req, res){
     res.json([
       { name: 'John',  last_name: 'Smith'},
       { name: 'Tito',  last_name: 'Perez'}
     ]);
+  });
+
+  // GET /
+  resource.root.get(function(req, res){
+    res.send('Root');
   });
 
   server.config();
@@ -55,6 +60,9 @@ Create config.json.
 
     "routes": {
       "file" : "routes.yml"
+      "scopes": {
+        "api" : "/api"
+      }
     },
 
   }
@@ -62,11 +70,13 @@ Create config.json.
 
 Add settings in package.json
 
-packege.json
+package.json
 ~~~json
   {
     ...
-    "main": "node server.js --config config.json"
+    "scripts": {
+      "start": "node server.js --config config.json"
+    },
     ...
   }
 ~~~
@@ -75,8 +85,9 @@ packege.json
 
 routes.yml
 ~~~yaml
-  users: '/api/user'
-
+  root: '/'
+  api:
+    users '/users'
 ~~~
 
 ## License

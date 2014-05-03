@@ -1,4 +1,5 @@
 "use strict"
+var config = require('configure');
 
 /*
   Adapters
@@ -10,9 +11,14 @@
     use: mongoDb.
 */
 module.exports = function(){
-  var adapter = {
-    _mysql: require('./database/mysql-engine')(),
-    _mongodb: require('./database/mongodb-engine')()
+  var adapter = {};
+
+  if (config.database){
+   adapter._mysql = require('./database/mysql-engine')();
+  }
+
+  if (config.mongodb){
+   adapter._mongodb = require('./database/mongodb-engine')();
   }
 
   return adapter;

@@ -1,19 +1,18 @@
 "use strict"
 
-var express = require('express'),
-    http = require('http'),
-    configure = require('configure');
+var express   = require('express'),
+    http      = require('http'),
+    configure = require('configure'),
+    routesList    = require('./routes');
 
 
 module.exports = function(){
   var app, serverCore;
-  app = express();
+  app = setRoutes(express());
 
   serverCore = {
-    express: function(){
-      return app;
-    },
-
+    resource: app.handlerRoutes,
+    app: app,
     _create: function(){
       return http.createServer(app);
     },
@@ -111,3 +110,71 @@ function allowCrossDomain(req, res, next) {
       next();
     }
 };
+
+function setRoutes(app){
+  var routes = routesList();
+  var routesKey = objectKey(routes);
+  var object = {};
+
+  for (var i = 0; i < routesKey.length; i++) {
+    if (isObject(routes[routesKey[i]])){
+
+      var subRoutes = routes[routesKey[i]];
+      var subRoutesKey = objectKey(subRoutes);
+      var scope =  configure.routes.scopes[routesKey[i]];
+      object[routesKey[i]] = {};
+
+      for (var j = 0; j < subRoutesKey.length; j++) {
+        var strRoute = scope + subRoutes[subRoutesKey[j]];
+        object[routesKey[i]][subRoutesKey[j]] = routeTemplate(app, strRoute);
+      }
+
+    } else {
+      object[routesKey[i]] = routeTemplate(app, routes[routesKey[i]]);
+    }
+  };
+
+  app.handlerRoutes = object;
+
+  return app;
+}
+
+
+function objectKey(obj){
+  var keys = [];
+
+  for (var name in obj) {
+    keys.push(name);
+  }
+
+  return keys;
+}
+
+function routeTemplate(app, route){
+  return {
+    get: function(callbackValid, callback){
+      app.get(route, callbackValid, function(req, res){
+        callback(req, res);
+      });
+    },
+    post: function(callbackValid, callback){
+      app.post(route, callbackValid, function(req, res){
+        callback(req, res);
+      });
+    },
+    put: function(callbackValid, callback){
+      app.put(route, callbackValid, function(req, res){
+        callback(req, res);
+      });
+    },
+    delete: function(callbackValid, callback){
+      app.delete(route, callbackValid, function(req, res){
+        callback(req, res);
+      });
+    }
+  }
+}
+
+function isObject(input){
+  return (typeof input === 'object' ) && (input instanceof Object);
+}

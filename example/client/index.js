@@ -13,7 +13,7 @@ function validate_token(decoded) {
     return false;
   }
 
-  if (decoded.aud !== "859899350109-0fnmks5mik7ipd289n2o249vkvl9eu34.apps.googleusercontent.com" ) {
+  if (decoded.aud !== "795343245353-tjkggvshqesge5f3m71a0ortv9hlv7o8.apps.googleusercontent.com" ) {
     console.log('Token is not for us.');
     return false;
   }
@@ -57,6 +57,19 @@ function get_messages() {
   });
 }
 
+function coso() {
+  var token = token_store.get();
+  $.ajax({
+    url: 'https://accounts.google.com/o/oauth2/token',
+
+    cache: false
+  }).done(function (data) {
+      console.log(data)
+  });
+}
+
+
+
 $(function () {
   var token;
 
@@ -72,6 +85,7 @@ $(function () {
 
   if (token) {
     var decoded = jwt_decode(token);
+    console.log(decoded);
 
     //quick check if it is not expired and for us
     if (validate_token(decoded)) {
